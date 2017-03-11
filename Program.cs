@@ -16,12 +16,12 @@ namespace nvavoidthrottling
             public bool stahp = false;
             public int throttletemp_0 = 1;
             public int nothrottlestate = 1084;
-            public int throttletemp_1 = 55;
+            public int throttletemp_1 = 53;
             public int throttlestate_1 = 1000;
-            public int throttletemp_2 = 57;
+            public int throttletemp_2 = 54;
             public int throttlestate_2 = 960;
-            public int throttletemp_3 = 60;
-            public int throttlestate_3 = 900;
+            public int throttletemp_3 = 55;
+            public int throttlestate_3 = 940;
             public int memorystate = 900;
             public int proposedstate = 960;
             public int lastproposedstate = 960;
