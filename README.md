@@ -10,6 +10,9 @@ NVIDIA Inspector unzipped somewhere
 
 # Default Config :
 temp=55,gpuclock=1000;
+
 temp=57,gpuclock=960;
+
 temp=60,gpuclock=900;
+
 memorystate=900;
