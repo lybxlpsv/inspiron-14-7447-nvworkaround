@@ -27,7 +27,7 @@ namespace nvavoidthrottling
             public int throttlestate_4 = 900;
             public int throttletemp_5 = 57;
             public int throttlestate_5 = 876;
-            public int memorystate = 900;
+            public int memorystate = 1149;
             public int proposedstate = 960;
             public int lastproposedstate = 960;
             public bool clockhaschanged = true;
@@ -41,17 +41,17 @@ namespace nvavoidthrottling
                     GpuzWrapper gpuz = new GpuzWrapper();
                     gpuz.Open();
                     temp = (int)Math.Round(gpuz.SensorValue(2));
-                    Console.WriteLine("Factory GPU Clock" + ": " + gpuz.DataValue(22) + "Mhz");
+                    Console.WriteLine("Factory GPU Clock" + ": 876 Mhz");
                     Console.WriteLine(gpuz.SensorName(0) + ": " + gpuz.SensorValue(0) + " " + gpuz.SensorUnit(0));
                     Console.WriteLine(gpuz.SensorName(2) + ": " + gpuz.SensorValue(2) + " " + gpuz.SensorUnit(2));
-                    Console.WriteLine(gpuz.SensorName(3) + ": " + temp + " " + gpuz.SensorUnit(3));
+                    Console.WriteLine(gpuz.SensorName(4) + ": " + gpuz.SensorValue(4) + " " + gpuz.SensorUnit(4));
                     Console.WriteLine(gpuz.SensorName(10) + ": " + gpuz.SensorValue(10) + " " + gpuz.SensorUnit(10));
-                    if (temp >= throttletemp_0) { proposedstate = nothrottlestate; Console.WriteLine("NO THROTTLING"); }
-                    if ((temp >= throttletemp_1) && (temp < throttletemp_2)) { proposedstate = throttlestate_1; Console.WriteLine("THROTTLING STATE 1"); }
-                    if ((temp >= throttletemp_2) && (temp < throttletemp_3)) { proposedstate = throttlestate_2; Console.WriteLine("THROTTLING STATE 2"); }
-                    if ((temp >= throttletemp_3) && (temp < throttletemp_4)) { proposedstate = throttlestate_3; Console.WriteLine("THROTTLING STATE 3"); }
-                    if ((temp >= throttletemp_4) && (temp < throttletemp_5)) { proposedstate = throttlestate_4; Console.WriteLine("THROTTLING STATE 4"); }
-                    if (temp >= throttletemp_5) { proposedstate = throttlestate_5; Console.WriteLine("THROTTLING STATE 5"); }
+                    if ((temp >= throttletemp_0) && (temp < throttletemp_1)) { proposedstate = nothrottlestate; Console.WriteLine("OC STATE 5"); }
+                    if ((temp >= throttletemp_1) && (temp < throttletemp_2)) { proposedstate = throttlestate_1; Console.WriteLine("OC STATE 4"); }
+                    if ((temp >= throttletemp_2) && (temp < throttletemp_3)) { proposedstate = throttlestate_2; Console.WriteLine("OC STATE 3"); }
+                    if ((temp >= throttletemp_3) && (temp < throttletemp_4)) { proposedstate = throttlestate_3; Console.WriteLine("OC STATE 2"); }
+                    if ((temp >= throttletemp_4) && (temp < throttletemp_5)) { proposedstate = throttlestate_4; Console.WriteLine("OC STATE 1"); }
+                    if (temp >= throttletemp_5) { proposedstate = throttlestate_5; Console.WriteLine("OC STATE 0"); }
 
                     if (proposedstate != lastproposedstate) clockhaschanged = false;
 
@@ -66,7 +66,8 @@ namespace nvavoidthrottling
                         lastproposedstate = proposedstate;
                     }
 
-                    Console.WriteLine("Proposed GPU Clock = " + proposedstate + "Mhz");
+                    Console.WriteLine("Target GPU Clock  = " + proposedstate + "Mhz, OC +" + (proposedstate-876) + "Mhz");
+                    Console.WriteLine("Target GPU Memory = " + memorystate + "Mhz" + ", OC +" + (memorystate -800) + "Mhz");
                     Console.WriteLine("Press ENTER to quit");
                     gpuz.Close();
                     Thread.Sleep(500);
