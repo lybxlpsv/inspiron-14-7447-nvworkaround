@@ -8,3 +8,6 @@ GPU-Z Shared Memory https://www.techpowerup.com/forums/threads/gpu-z-shared-memo
 GPU-Z Running in the background
 
 NVIDIA Inspector unzipped somewhere
+
+# Download :
+Still W.I.P, if you so desire compile it yourself.
