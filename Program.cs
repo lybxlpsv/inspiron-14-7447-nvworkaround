@@ -1,3 +1,4 @@
+using GpuzDemo;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -22,6 +23,10 @@ namespace nvavoidthrottling
             public int throttlestate_2 = 960;
             public int throttletemp_3 = 55;
             public int throttlestate_3 = 940;
+            public int throttletemp_4 = 56;
+            public int throttlestate_4 = 900;
+            public int throttletemp_5 = 57;
+            public int throttlestate_5 = 876;
             public int memorystate = 900;
             public int proposedstate = 960;
             public int lastproposedstate = 960;
@@ -44,7 +49,9 @@ namespace nvavoidthrottling
                     if (temp >= throttletemp_0) { proposedstate = nothrottlestate; Console.WriteLine("NO THROTTLING"); }
                     if ((temp >= throttletemp_1) && (temp < throttletemp_2)) { proposedstate = throttlestate_1; Console.WriteLine("THROTTLING STATE 1"); }
                     if ((temp >= throttletemp_2) && (temp < throttletemp_3)) { proposedstate = throttlestate_2; Console.WriteLine("THROTTLING STATE 2"); }
-                    if (temp >= throttletemp_3) { proposedstate = throttlestate_3; Console.WriteLine("THROTTLING STATE 3"); }
+                    if ((temp >= throttletemp_3) && (temp < throttletemp_4)) { proposedstate = throttlestate_3; Console.WriteLine("THROTTLING STATE 3"); }
+                    if ((temp >= throttletemp_4) && (temp < throttletemp_5)) { proposedstate = throttlestate_4; Console.WriteLine("THROTTLING STATE 4"); }
+                    if (temp >= throttletemp_5) { proposedstate = throttlestate_5; Console.WriteLine("THROTTLING STATE 5"); }
 
                     if (proposedstate != lastproposedstate) clockhaschanged = false;
 
@@ -67,7 +74,7 @@ namespace nvavoidthrottling
             }
 
         }
-            static void Main(string[] args)
+        static void Main(string[] args)
         {
             //TODO : RUN AS ADMIN CHECK
             //TODO : READ AND WRITE CONFIGURATION
